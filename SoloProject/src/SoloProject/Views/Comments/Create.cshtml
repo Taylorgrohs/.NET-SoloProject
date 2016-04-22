@@ -10,7 +10,8 @@
     <div class="container">
         @using (Html.BeginForm())
         {
-            <p>@Html.HiddenFor(x => Model.PostId)</p>
+            <input id="PostId" type="hidden" name="PostId" value=@ViewBag.PostId />
+
 
             <p>@Html.LabelFor(model => model.CommentBody)</p>
             <p>@Html.TextAreaFor(model => model.CommentBody)</p>

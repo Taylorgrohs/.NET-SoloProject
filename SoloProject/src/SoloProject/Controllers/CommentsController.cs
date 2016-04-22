@@ -21,19 +21,20 @@ namespace SoloProject.Controllers
             var thisComment = db.Comments.FirstOrDefault(comments => comments.CommentId == id);
             return View(thisComment);
         }
+
         public IActionResult Create(int id)
         {
-            var thisPost = db.Posts.FirstOrDefault(posts => posts.PostId == id);
-            return View(thisPost);
+           ViewBag.PostId = id;
+            return View();
         }
         [HttpPost]
         public IActionResult Create(Comment comment)
         {
-            var id = comment.PostId;
             db.Comments.Add(comment);
             db.SaveChanges();
             return RedirectToAction("Index", "Home");
         }
+
         public IActionResult Edit(int id)
         {
             var thisComment = db.Comments.FirstOrDefault(comments => comments.CommentId == id);
