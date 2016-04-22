@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Posts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model SoloProject.Models.Comment
+
+<h3>Edit current team</h3>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.PostId)
+    @Html.HiddenFor(model => model.CommentId)
+
+    @Html.LabelFor(model => model.Content)
+    @Html.EditorFor(model => model.Content)
+
+
+    <input type="submit" value="Save" />
+}
+@Html.ActionLink("Back to the list", "Index", "Home")

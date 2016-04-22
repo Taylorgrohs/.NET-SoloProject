@@ -12,47 +12,48 @@ namespace SoloProject.Controllers
     public class CommentsController : Controller
     {
         private PostDbContext db = new PostDbContext();
-        public IActionResult Index()
+        public IActionResult Index(int id)
         {
-            return View(db.Comments.Include(comments => comments.Post).ToList());
+            return View(db.Comments.Where(comments => comments.PostId == id).Include(comments => comments.Post).ToList());
         }
         public IActionResult Details(int id)
         {
             var thisComment = db.Comments.FirstOrDefault(comments => comments.CommentId == id);
             return View(thisComment);
         }
-        public ActionResult Create()
+        public IActionResult Create(int id)
         {
-            ViewBag.PostId = new SelectList(db.Posts, "PostId", "Content");
-            return View();
+            var thisPost = db.Posts.FirstOrDefault(posts => posts.PostId == id);
+            return View(thisPost);
         }
         [HttpPost]
-        public ActionResult Create(Comment comment)
+        public IActionResult Create(Comment comment)
         {
+            var id = comment.PostId;
             db.Comments.Add(comment);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
             var thisComment = db.Comments.FirstOrDefault(comments => comments.CommentId == id);
             ViewBag.PostId = new SelectList(db.Posts, "PostId", "Content");
             return View(thisComment);
         }
         [HttpPost]
-        public ActionResult Edit(Comment comment)
+        public IActionResult Edit(Comment comment)
         {
             db.Entry(comment).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
             var thisComment = db.Comments.FirstOrDefault(comments => comments.CommentId == id);
             return View(thisComment);
         }
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
             var thisComment = db.Comments.FirstOrDefault(comments => comments.CommentId == id);
             db.Comments.Remove(thisComment);

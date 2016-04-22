@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Comments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IList<SoloProject.Models.Comment>
+<div>
+    <h1>Post</h1>
+
+    <div class="container">
+        <h2>@Html.DisplayFor(model => model[0].Post.Content)</h2>
+    </div>
+    <hr />
+    @foreach(var comment in Model)
+    {
+        <div class="container comment">
+            <p>@Html.DisplayFor(x => comment.CommentBody)</p>
+            <br />
+            <p>@Html.ActionLink("Edit", "Edit", new { id = comment.CommentId }) | @Html.ActionLink("Delete", "Delete", new { id = comment.CommentId }) </p>
+        </div>
+    }
+</div>
+<p>@Html.ActionLink("New Comment", "Create", new { id = Model[0].PostId })</p>
+
+<p>@Html.ActionLink("Home", "Home", "Index")</p>

@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Posts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IList<SoloProject.Models.Post>
+
+<h2>Recent Posts</h2>
+
+@foreach(var post in Model)
+{
+    <div class="container">
+        <p>@Html.DisplayFor(x => post.Content)</p>
+        <p>@Html.ActionLink("Details", "Index", "Comments", new { id = post.PostId })</p>
+    </div>
+}

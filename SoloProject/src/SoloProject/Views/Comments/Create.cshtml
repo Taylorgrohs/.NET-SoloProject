@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Comments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model SoloProject.Models.Comment
+<div class="container">
+    <h1>Create new comment</h1>
+    <br />
+    <div class="container">
+        @using (Html.BeginForm())
+        {
+            <p>@Html.HiddenFor(x => Model.PostId)</p>
+
+            <p>@Html.LabelFor(model => model.CommentBody)</p>
+            <p>@Html.TextAreaFor(model => model.CommentBody)</p>
+
+            <input type="submit" value="Create" />
+        }
+    </div>
+</div>
