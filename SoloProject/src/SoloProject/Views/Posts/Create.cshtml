@@ -3,9 +3,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model SoloProject.Models.Comment
+@model SoloProject.Models.Post
 <div class="container">
-    <h1>Create new comment</h1>
+    <h1>Create new Post</h1>
     <br />
     <div class="container">
         @using (Html.BeginForm())
@@ -13,8 +13,8 @@
             <input id="PostId" type="hidden" name="PostId" value=@ViewBag.PostId />
 
 
-            <p>@Html.LabelFor(model => model.CommentBody)</p>
-            <p>@Html.TextAreaFor(model => model.CommentBody)</p>
+            <p>@Html.LabelFor(model => model.Content)</p>
+            <p>@Html.TextAreaFor(model => model.Content)</p>
 
             <input type="submit" value="Create" />
         }

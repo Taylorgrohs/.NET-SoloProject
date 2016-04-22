@@ -3,18 +3,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model SoloProject.Models.Comment
+@model SoloProject.Models.Post
 
-<h3>Edit current Comment</h3>
+<h3>Edit current Post</h3>
 <hr />
 
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(model => model.PostId)
-    @Html.HiddenFor(model => model.CommentId)
 
-    @Html.LabelFor(model => model.CommentBody)
-    @Html.EditorFor(model => model.CommentBody)
+    @Html.LabelFor(model => model.Content)
+    @Html.EditorFor(model => model.Content)
 
 
     <input type="submit" value="Save" />

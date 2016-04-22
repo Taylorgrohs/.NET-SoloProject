@@ -1,16 +1,29 @@
 ﻿@{
-    ViewData["Title"] = "Posts";
+    ViewData["Title"] = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @model IList<SoloProject.Models.Post>
+<div class="jumbotron">
+    <h2>Recent Posts</h2>
+</div>
+<div>
+    @foreach (var post in Model)
+    {
+        <div class="container">
+            <p>@Html.DisplayFor(x => post.Content)</p>
+            @*@if (ViewBag.Comments == 0)
+            {*@
+            <p>@Html.ActionLink("Comment", "Create", "Comments", new { id = post.PostId }) | @Html.ActionLink("Details", "Index", "Comments", new { id = post.PostId }) | @Html.ActionLink("Edit", "Edit", "Posts", new { id = post.PostId }) | @Html.ActionLink("Delete", "Delete", "Posts", new { id = post.PostId })</p>
+                @*//}
+                //else
+                //{*@
+                
+            @*}*@
+        </div>
+    }
 
-<h2>Recent Posts</h2>
-
-@foreach(var post in Model)
-{
     <div class="container">
-        <p>@Html.DisplayFor(x => post.Content)</p>
-        <p>@Html.ActionLink("Details", "Index", "Comments", new { id = post.PostId })</p>
+        @Html.ActionLink("New Post", "Create", "Posts", null, new { @class = "btn btn-primaray" })
     </div>
-}
+</div>
