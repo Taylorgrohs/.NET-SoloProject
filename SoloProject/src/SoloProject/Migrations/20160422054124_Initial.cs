@@ -10,7 +10,7 @@ namespace SoloProject.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Post",
+                name: "Posts",
                 columns: table => new
                 {
                     PostId = table.Column<int>(nullable: false)
@@ -22,12 +22,12 @@ namespace SoloProject.Migrations
                     table.PrimaryKey("PK_Post", x => x.PostId);
                 });
             migrationBuilder.CreateTable(
-                name: "Comment",
+                name: "Comments",
                 columns: table => new
                 {
                     CommentId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Content = table.Column<string>(nullable: true),
+                    CommentBody = table.Column<string>(nullable: true),
                     PostId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -36,7 +36,7 @@ namespace SoloProject.Migrations
                     table.ForeignKey(
                         name: "FK_Comment_Post_PostId",
                         column: x => x.PostId,
-                        principalTable: "Post",
+                        principalTable: "Posts",
                         principalColumn: "PostId",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -44,8 +44,8 @@ namespace SoloProject.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable("Comment");
-            migrationBuilder.DropTable("Post");
+            migrationBuilder.DropTable("Comments");
+            migrationBuilder.DropTable("Posts");
         }
     }
 }

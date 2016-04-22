@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Posts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model SoloProject.Models.Comment
+
+<div>
+    <h2>Are you sure you want to delete this comment?</h2>
+    <hr />
+    <p>Comment: @Html.DisplayFor(model => model.CommentBody)</p> 
+    <div>
+        @using (Html.BeginForm())
+        {
+            <input type="submit" value="Delete" />
+
+        }
+    </div>
+</div>

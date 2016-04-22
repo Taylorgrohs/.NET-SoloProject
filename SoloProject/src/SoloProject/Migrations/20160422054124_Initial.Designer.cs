@@ -8,8 +8,8 @@ using SoloProject.Models;
 namespace SoloProject.Migrations
 {
     [DbContext(typeof(PostDbContext))]
-    [Migration("20160421020905_MakeTableNamesPlural")]
-    partial class MakeTableNamesPlural
+    [Migration("20160422054124_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,7 +22,7 @@ namespace SoloProject.Migrations
                     b.Property<int>("CommentId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Content");
+                    b.Property<string>("CommentBody");
 
                     b.Property<int>("PostId");
 

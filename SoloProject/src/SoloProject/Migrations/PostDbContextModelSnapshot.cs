@@ -21,7 +21,7 @@ namespace SoloProject.Migrations
                     b.Property<int>("CommentId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Content");
+                    b.Property<string>("CommentBody");
 
                     b.Property<int>("PostId");
 
