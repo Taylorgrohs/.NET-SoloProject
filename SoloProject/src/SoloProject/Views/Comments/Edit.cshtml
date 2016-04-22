@@ -4,19 +4,21 @@
 }
 
 @model SoloProject.Models.Comment
+<div class="container editComment">
+    <h3>Edit current Comment</h3>
+    <hr />
 
-<h3>Edit current Comment</h3>
-<hr />
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.PostId)
+        @Html.HiddenFor(model => model.CommentId)
 
-@using (Html.BeginForm())
-{
-    @Html.HiddenFor(model => model.PostId)
-    @Html.HiddenFor(model => model.CommentId)
-
-    @Html.LabelFor(model => model.CommentBody)
-    @Html.EditorFor(model => model.CommentBody)
+        @Html.LabelFor(model => model.CommentBody)
+        <br />
+        @Html.EditorFor(model => model.CommentBody)
 
 
-    <input type="submit" value="Save" />
-}
-@Html.ActionLink("Back to the list", "Index", "Home")
+        <input type="submit" value="Save" class="btn btn-warning" />
+    }
+    @Html.ActionLink("Back to post", "Index", "Comments", new { id = Model.PostId })
+</div>

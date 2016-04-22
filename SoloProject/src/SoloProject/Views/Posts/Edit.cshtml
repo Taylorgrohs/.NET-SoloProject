@@ -4,18 +4,21 @@
 }
 
 @model SoloProject.Models.Post
+<div class="container editPost">
+    <h3>Edit current Post</h3>
+    <hr />
 
-<h3>Edit current Post</h3>
-<hr />
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.PostId)
 
-@using (Html.BeginForm())
-{
-    @Html.HiddenFor(model => model.PostId)
-
-    @Html.LabelFor(model => model.Content)
-    @Html.EditorFor(model => model.Content)
+        @Html.LabelFor(model => model.Content)
+        <br />
+        @Html.EditorFor(model => model.Content)
 
 
-    <input type="submit" value="Save" />
-}
-@Html.ActionLink("Back to the list", "Index", "Home")
+        <input type="submit" value="Save" class="btn btn-warning"/>
+    }
+    <br />
+    @Html.ActionLink("Back to the list", "Index", "Home")
+</div>

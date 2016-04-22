@@ -4,13 +4,13 @@
 }
 
 @model IList<SoloProject.Models.Post>
-<div class="jumbotron">
+<div class="jumbotron container">
     <h2>Recent Posts</h2>
 </div>
 <div>
     @foreach (var post in Model)
     {
-        <div class="container">
+        <div class="container post">
             <p>@Html.DisplayFor(x => post.Content)</p>
             @*@if (ViewBag.Comments == 0)
             {*@
@@ -23,7 +23,7 @@
         </div>
     }
 
-    <div class="container">
-        @Html.ActionLink("New Post", "Create", "Posts", null, new { @class = "btn btn-primaray" })
+    <div class="container footer">
+        @Html.ActionLink("New Post", "Create", "Posts", null, new { @class = "btn btn-primary" })
     </div>
 </div>

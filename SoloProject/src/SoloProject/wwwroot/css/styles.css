@@ -1,0 +1,29 @@
+﻿body {
+    background-color: #DADFE1;
+}
+.post {
+    width: 500px;
+}
+.createPost, .editPost, .deletePost, .createComment, .editComment, .deleteComment {
+    padding-top: 100px;
+    width: 500px;
+}
+.comment {
+    border: 1px solid black;
+    margin-bottom: 3px;
+    width: 500px;
+    
+}
+.postTitle {
+    text-align: center;
+}
+.jumbotron {
+    text-align: center;
+    background-color: #6C7A89;
+}
+.footer {
+    width: 500px;
+}
+.commentPage {
+ 
+}

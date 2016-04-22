@@ -4,7 +4,7 @@
 }
 
 @model SoloProject.Models.Post
-<div class="container">
+<div class="container createPost">
     <h1>Create new Post</h1>
     <br />
     <div class="container">
@@ -16,7 +16,7 @@
             <p>@Html.LabelFor(model => model.Content)</p>
             <p>@Html.TextAreaFor(model => model.Content)</p>
 
-            <input type="submit" value="Create" />
+            <input type="submit" value="Create" class="btn btn-success" />
         }
     </div>
 </div>

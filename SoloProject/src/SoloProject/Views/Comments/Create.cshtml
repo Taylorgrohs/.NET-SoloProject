@@ -4,7 +4,7 @@
 }
 
 @model SoloProject.Models.Comment
-<div class="container">
+<div class="container createComment">
     <h1>Create new comment</h1>
     <br />
     <div class="container">
@@ -16,7 +16,7 @@
             <p>@Html.LabelFor(model => model.CommentBody)</p>
             <p>@Html.TextAreaFor(model => model.CommentBody)</p>
 
-            <input type="submit" value="Create" />
+            <input type="submit" value="Create" class="btn btn-success" />
         }
     </div>
 </div>
