@@ -7,8 +7,9 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-using SoloProject.Models;
 using Microsoft.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using SoloProject.Models;
 
 namespace SoloProject
 {
@@ -24,21 +25,24 @@ namespace SoloProject
         {
             services.AddEntityFramework()
                 .AddSqlServer()
-                .AddDbContext<PostDbContext>(options =>
+                .AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
-
             services.AddMvc();
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
         }
 
         public void Configure(IApplicationBuilder app)
         {
             app.UseStaticFiles();
             app.UseIISPlatformHandler();
+            app.UseIdentity();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Posts}/{action=Index}/{id?}");
             });
             app.Run(async (context) =>
             {

@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "UserPosts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using System.Security.Claims
+@model IEnumerable<SoloProject.Models.Post>
+
+<h2>Here is your list of tasks, @User.GetUserName()</h2>
+<hr />
+
+@if (Model.Any())
+{
+    <ul>
+        @foreach (var post in Model)
+        {
+            <li>@Html.DisplayFor(p => post.Content)</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No Posts have been added yet!</p>
+}
+
+@Html.ActionLink("Create new", "Create")

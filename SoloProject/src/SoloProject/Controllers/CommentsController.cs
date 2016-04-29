@@ -6,59 +6,75 @@ using Microsoft.AspNet.Mvc;
 using SoloProject.Models;
 using Microsoft.Data.Entity;
 using Microsoft.AspNet.Mvc.Rendering;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Authorization;
+using System.Security.Claims;
 
 namespace SoloProject.Controllers
 {
+    [Authorize]
     public class CommentsController : Controller
     {
-        private PostDbContext db = new PostDbContext();
+        private readonly ApplicationDbContext _db;
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public CommentsController(
+            UserManager<ApplicationUser> userManager,
+            ApplicationDbContext db
+        )
+        {
+            _userManager = userManager;
+            _db = db;
+        }
         public IActionResult Index(int id)
         {
-            return View(db.Comments.Where(comments => comments.PostId == id).Include(comments => comments.Post).ToList());
+            return View(_db.Comments.Where(comments => comments.PostId == id).Include(comments => comments.Post).ToList());
         }
         public IActionResult Details(int id)
         {
-            var thisComment = db.Comments.FirstOrDefault(comments => comments.CommentId == id);
+            var thisComment = _db.Comments.FirstOrDefault(comments => comments.CommentId == id);
             return View(thisComment);
         }
 
         public IActionResult Create(int id)
         {
-           ViewBag.PostId = id;
+            ViewBag.PostId = id;
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Comment comment)
+        public async Task<IActionResult> Create(Comment comment)
         {
-            db.Comments.Add(comment);
-            db.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            var currentUser = await _userManager.FindByIdAsync(User.GetUserId());
+            _db.Comments.Add(comment);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public IActionResult Edit(int id)
         {
-            var thisComment = db.Comments.FirstOrDefault(comments => comments.CommentId == id);
-            ViewBag.PostId = new SelectList(db.Posts, "PostId", "Content");
+            var thisComment = _db.Comments.FirstOrDefault(comments => comments.CommentId == id);
+            ViewBag.PostId = new SelectList(_db.Posts, "PostId", "Content");
             return View(thisComment);
         }
         [HttpPost]
         public IActionResult Edit(Comment comment)
         {
-            db.Entry(comment).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            var id = comment.PostId;
+            _db.Entry(comment).State = EntityState.Modified;
+            _db.SaveChanges();
+            return RedirectToAction("Index", new { id = id });
         }
         public IActionResult Delete(int id)
         {
-            var thisComment = db.Comments.FirstOrDefault(comments => comments.CommentId == id);
+            var thisComment = _db.Comments.FirstOrDefault(comments => comments.CommentId == id);
             return View(thisComment);
         }
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
-            var thisComment = db.Comments.FirstOrDefault(comments => comments.CommentId == id);
-            db.Comments.Remove(thisComment);
-            db.SaveChanges();
+            var thisComment = _db.Comments.FirstOrDefault(comments => comments.CommentId == id);
+            _db.Comments.Remove(thisComment);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
     }

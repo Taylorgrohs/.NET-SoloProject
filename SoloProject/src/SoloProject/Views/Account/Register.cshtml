@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using SoloProject.ViewModels
+
+@model RegisterViewModel
+<div class="jumbotron">
+    <h1>Register a new user</h1>
+</div>
+
+<hr />
+<div class="container register ">
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+    {
+        <p>@Html.LabelFor(m => m.Email)
+        <br />
+        @Html.TextBoxFor(m => m.Email)</p>
+        <br />
+        <p>@Html.LabelFor(m => m.Password)
+        <br />@Html.PasswordFor(m => m.Password)</p>
+        <br />
+        <p>@Html.LabelFor(m => m.ConfirmPassword)
+        <br />@Html.PasswordFor(m => m.ConfirmPassword)</p>
+
+        <input type="submit" value="Register" class="btn btn-success" />
+    }
+</div>

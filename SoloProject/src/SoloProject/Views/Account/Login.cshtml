@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using SoloProject.ViewModels
+
+@model LoginViewModel
+<div class="jumbotron">
+    <h1>Log in with your account</h1>
+</div>
+
+<hr />
+<div class="container login">
+    @using (Html.BeginForm())
+    {
+        <p>
+            @Html.LabelFor(m => m.Email)
+            <br />
+            @Html.TextBoxFor(m => m.Email)
+        </p>
+
+        <p>
+            @Html.LabelFor(m => m.Password)
+            <br />
+            @Html.PasswordFor(m => m.Password)
+        </p>
+
+        <input type="submit" value="Log in" class="btn btn-default" />
+    }
+</div>

@@ -27,3 +27,10 @@
 .commentPage {
  
 }
+
+.navbar {
+   text-align: right;
+}
+.login, .register {
+    text-align:center;
+}

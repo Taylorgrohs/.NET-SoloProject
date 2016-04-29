@@ -11,6 +11,22 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
+    @using System.Security.Claims
+    <div class=" container navbar">
+        @if (User.IsSignedIn())
+        {
+            @using (Html.BeginForm("LogOff", "Account"))
+            {
+                <input type="submit" class="btn btn-default" value="Log out" />
+            }
+        }
+        else
+        {
+            <p>@Html.ActionLink("Register", "Register") | @Html.ActionLink("Log in", "Login")</p>
+           
+        }
+    </div>
+
     <div>
         @RenderBody()
     </div>
