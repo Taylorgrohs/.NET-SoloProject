@@ -22,15 +22,15 @@ namespace SoloProject.Tests
             Assert.Equal("Wash the dog", result);
         }
         [Fact]
-        public void GetComment()
+        public void GetCommentTest()
         {
-            var post = new Post();
-            post.Content = "Today";
-            post.PostId = 1;
+
             var comment = new Comment();
             comment.CommentBody = "Test";
-            comment.PostId = 1;
 
+            var result = comment.CommentBody;
+
+            Assert.Equal("Test", result);
 
         }
     }
