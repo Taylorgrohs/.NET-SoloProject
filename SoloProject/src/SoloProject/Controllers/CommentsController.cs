@@ -44,10 +44,11 @@ namespace SoloProject.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Comment comment)
         {
+            var id = comment.PostId;
             var currentUser = await _userManager.FindByIdAsync(User.GetUserId());
             _db.Comments.Add(comment);
             _db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { id = id });
         }
 
         public IActionResult Edit(int id)
