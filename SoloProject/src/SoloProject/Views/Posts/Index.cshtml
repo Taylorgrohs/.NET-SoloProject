@@ -16,8 +16,9 @@
             <h3>@post.Name</h3>
             <p> -"@Html.DisplayFor(x => post.Content)"</p>
 
-            <p>@Html.ActionLink("Comment", "Create", "Comments", new { id = post.PostId }) | @Html.ActionLink("Details", "Index", "Comments", new { id = post.PostId }) | 
-            <button class="btn btn-warning edit-post" value=@Html.DisplayFor(x => post.PostId) name="DeletePost" data-toggle="modal" data-target="#myModal">Edit</button> | 
+            <p>@Html.ActionLink("Comment", "Create", "Comments", new { id = post.PostId }) |
+            <button class="btn btn-info details-post" value=@Html.DisplayFor(x => post.PostId) name="DetailsPost" data-toggle="modal" data-target="#myModal">Details</button> | 
+            <button class="btn btn-warning edit-post" value=@Html.DisplayFor(x => post.PostId) name="EditPost" data-toggle="modal" data-target="#myModal">Edit</button> | 
             <button class="btn btn-danger delete-post" value=@Html.DisplayFor(x => post.PostId) name="DeletePost" data-toggle="modal" data-target="#myModal">Delete</button></p>
         </div>
     }
@@ -56,6 +57,18 @@
             url: '@Url.Action("Create")',
             success: function (result) {
                    $('#newPostPartial').html(result);
+                }
+            });
+        });
+        $('.details-post').click(function () {
+            $('#myInput').focus()
+            $.ajax({
+                type: 'GET',
+                dataType: 'html',
+                data: { id: this.value },
+                url: '@Url.Action("Index", "Comments")',
+                success: function (result) {
+                    $('#editPost').html(result);
                 }
             });
         });
