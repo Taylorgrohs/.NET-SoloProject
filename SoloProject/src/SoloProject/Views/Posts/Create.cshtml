@@ -1,4 +1,4 @@
-﻿
+﻿@using System.Security.Claims
 @model SoloProject.Models.Post
 <div class="container createPost">
     <h1>Create new Post</h1>
@@ -7,7 +7,7 @@
         @using (Html.BeginForm())
         {
             <input id="PostId" type="hidden" name="PostId" value=@ViewBag.PostId />
-
+            <input id="Name" type="hidden" name="Name" value=@User.GetUserName()>
 
             <p>@Html.LabelFor(model => model.Content)</p>
             <p>@Html.TextAreaFor(model => model.Content)</p>

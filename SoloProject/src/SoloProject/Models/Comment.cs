@@ -13,6 +13,7 @@ namespace SoloProject.Models
         [Key]
         public int CommentId { get; set; }
         public string CommentBody { get; set; }
+        public string Name { get; set; }
         public int PostId { get; set; }
         public virtual Post Post { get; set; }
         public virtual ApplicationUser User { get; set; }

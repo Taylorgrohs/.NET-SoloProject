@@ -153,6 +153,8 @@ namespace SoloProject.Migrations
 
                     b.Property<string>("CommentBody");
 
+                    b.Property<string>("Name");
+
                     b.Property<int>("PostId");
 
                     b.Property<string>("UserId");
@@ -168,6 +170,8 @@ namespace SoloProject.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Content");
+
+                    b.Property<string>("Name");
 
                     b.Property<string>("UserId");
 

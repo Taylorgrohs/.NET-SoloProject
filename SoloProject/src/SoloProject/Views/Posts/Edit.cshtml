@@ -1,8 +1,4 @@
-﻿@{
-    ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
+﻿
 @model SoloProject.Models.Post
 <div class="container editPost">
     <h3>Edit current Post</h3>
@@ -11,7 +7,7 @@
     @using (Html.BeginForm())
     {
         @Html.HiddenFor(model => model.PostId)
-
+        @Html.HiddenFor(model => model.Name)
         @Html.LabelFor(model => model.Content)
         <br />
         @Html.EditorFor(model => model.Content)

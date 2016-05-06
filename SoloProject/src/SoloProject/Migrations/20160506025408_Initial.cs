@@ -135,6 +135,7 @@ namespace SoloProject.Migrations
                     PostId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Content = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -154,6 +155,7 @@ namespace SoloProject.Migrations
                     CommentId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CommentBody = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
                     PostId = table.Column<int>(nullable: false),
                     UserId = table.Column<string>(nullable: true)
                 },

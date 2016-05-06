@@ -8,7 +8,7 @@ using SoloProject.Models;
 namespace SoloProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160429041121_Initial")]
+    [Migration("20160506025408_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -154,6 +154,8 @@ namespace SoloProject.Migrations
 
                     b.Property<string>("CommentBody");
 
+                    b.Property<string>("Name");
+
                     b.Property<int>("PostId");
 
                     b.Property<string>("UserId");
@@ -169,6 +171,8 @@ namespace SoloProject.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Content");
+
+                    b.Property<string>("Name");
 
                     b.Property<string>("UserId");
 

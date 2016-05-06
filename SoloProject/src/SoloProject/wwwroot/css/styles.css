@@ -5,8 +5,9 @@
     width: 500px;
 }
 .createPost, .editPost, .deletePost, .createComment, .editComment, .deleteComment {
-    padding-top: 100px;
+    padding-top: 20px;
     width: 500px;
+    padding-bottom:100px;
 }
 .comment {
     border: 1px solid black;
