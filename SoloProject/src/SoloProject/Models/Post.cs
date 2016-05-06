@@ -15,5 +15,13 @@ namespace SoloProject.Models
         public string Content { get; set; }
         public virtual ApplicationUser User { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
+
+
+        public Post(string content, int id = 0)
+        {
+            Content = content;
+        }
+
+        public Post() { }
     }
 }
