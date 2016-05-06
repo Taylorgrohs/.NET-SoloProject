@@ -1,9 +1,6 @@
 ﻿body {
     background-color: #DADFE1;
 }
-.post {
-    width: 500px;
-}
 .createPost, .editPost, .deletePost, .createComment, .editComment, .deleteComment {
     padding-top: 20px;
     width: 500px;
@@ -31,7 +28,32 @@
 
 .navbar {
    text-align: right;
+   background-color: darkblue;
+   padding-right: 10px;
+   color:white;
+   padding-top:10px;
 }
 .login, .register {
     text-align:center;
+}
+container post {
+  
+}
+.post {
+
+background:#fafafa;
+padding: 20px;
+width: 600px;
+margin:10px auto;
+border:solid 1px #c7c7c7;
+-webkit-box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.30);
+-moz-box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.30);
+box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.30);
+}
+.new-post-button{
+    text-align:center;
+    padding-bottom:20px;
+}
+.left-side{
+ 
 }

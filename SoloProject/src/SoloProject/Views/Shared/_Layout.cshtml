@@ -14,12 +14,13 @@
 </head>
 <body>
     @using System.Security.Claims
-    <div class=" container navbar">
+    <div class=" navbar">
         @if (User.IsSignedIn())
         {
             @using (Html.BeginForm("LogOff", "Account"))
             {
-                <input type="submit" class="btn btn-default" value="Log out" />
+                <p>Welcome, @User.GetUserName()      
+                 &nbsp;&nbsp;&nbsp;    <input type="submit" class="btn btn-default" value="Log out" /></p>
             }
         }
         else
@@ -28,9 +29,10 @@
            
         }
     </div>
-
+    <div class="left-side">&nbsp;</div>
     <div>
         @RenderBody()
     </div>
+    <div class="right-side">&nbsp;</div>
 </body>
 </html>
