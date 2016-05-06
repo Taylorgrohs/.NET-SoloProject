@@ -16,10 +16,11 @@
             <h3>@post.Name</h3>
             <p> -"@Html.DisplayFor(x => post.Content)"</p>
 
-            <button class="btn btn-primary display-new-post">Comment</button> |
-            <button class="btn btn-info details-post" value=@Html.DisplayFor(x => post.PostId) name="DetailsPost" data-toggle="modal" data-target="#myModal">Details</button> | 
+            <button class="btn btn-primary comment-post" value=@Html.DisplayFor(x => post.PostId) name="CommentPost" data-toggle="modal" data-target="#myModal">Comment</button> |
+            <button class="btn btn-info details-post" value=@Html.DisplayFor(x => post.PostId) name="DetailsPost">Details</button> | 
             <button class="btn btn-warning edit-post" value=@Html.DisplayFor(x => post.PostId) name="EditPost" data-toggle="modal" data-target="#myModal">Edit</button> | 
             <button class="btn btn-danger delete-post" value=@Html.DisplayFor(x => post.PostId) name="DeletePost" data-toggle="modal" data-target="#myModal">Delete</button>
+            <div id="details"></div>
         </div>
     }
     <br />
@@ -47,6 +48,19 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $('.comment-post').click(function () {
+            $('#myInput').focus()
+            $.ajax({
+                type: 'GET',
+                dataType: 'html',
+                data: { id : this.value},
+                url: '@Url.Action("Create", "Comments")',
+                success: function (result) {
+                    $('#ModalPost').html(result);
+                }
+            });
+        });
         $('.display-new-post').click(function () {
             $('#myInput').focus()
             $.ajax({
@@ -60,14 +74,13 @@
             });
         });
         $('.details-post').click(function () {
-            $('#myInput').focus()
             $.ajax({
                 type: 'GET',
                 dataType: 'html',
                 data: { id: this.value },
                 url: '@Url.Action("Index", "Comments")',
                 success: function (result) {
-                    $('#ModalPost').html(result);
+                    $('#details').html(result);
                 }
             });
         });

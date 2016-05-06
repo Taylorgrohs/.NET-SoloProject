@@ -48,7 +48,7 @@ namespace SoloProject.Controllers
             var currentUser = await _userManager.FindByIdAsync(User.GetUserId());
             _db.Comments.Add(comment);
             _db.SaveChanges();
-            return RedirectToAction("Index", new { id = id });
+            return RedirectToAction("Index", "Posts");
         }
 
         public IActionResult Edit(int id)
@@ -63,7 +63,7 @@ namespace SoloProject.Controllers
             var id = comment.PostId;
             _db.Entry(comment).State = EntityState.Modified;
             _db.SaveChanges();
-            return RedirectToAction("Index", new { id = id });
+            return RedirectToAction("Index","Posts");
         }
         public IActionResult Delete(int id)
         {
@@ -76,7 +76,7 @@ namespace SoloProject.Controllers
             var thisComment = _db.Comments.FirstOrDefault(comments => comments.CommentId == id);
             _db.Comments.Remove(thisComment);
             _db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Posts");
         }
     }
 }
