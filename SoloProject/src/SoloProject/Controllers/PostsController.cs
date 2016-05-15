@@ -80,5 +80,17 @@ namespace SoloProject.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public IActionResult Message()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Message(Message newMessage)
+        {
+            newMessage.Send();
+            return RedirectToAction("Index");
+        }
     }
 }

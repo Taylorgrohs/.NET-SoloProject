@@ -4,7 +4,7 @@ using RestSharp.Authenticators;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
-namespace Texter.Models
+namespace SoloProject.Models
 {
     public class Message
     {
@@ -17,12 +17,12 @@ namespace Texter.Models
         public void Send()
         {
             var client = new RestClient("https://api.twilio.com/2010-04-01");
-            var request = new RestRequest("Accounts/ACd4cbc6457b1466d2bba396ef1bf8b525/Messages", Method.POST);
+            var request = new RestRequest("/Accounts/AC511da8b64e69517082a8911962dfab8c/Messages", Method.POST);
             request.AddParameter("To", To);
             request.AddParameter("From", From);
             request.AddParameter("Body", Body);
             request.AddParameter("Status", Status);
-            client.Authenticator = new HttpBasicAuthenticator("ACd4cbc6457b1466d2bba396ef1bf8b525", "d45fdac232bd9a4b18ae63a78bdfe4ce");
+            client.Authenticator = new HttpBasicAuthenticator("AC511da8b64e69517082a8911962dfab8c", "b07f4c2a9aaeac2f4d1feee0643dd25b");
             client.Execute(request);
         }
     }

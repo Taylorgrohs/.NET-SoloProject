@@ -1,0 +1,15 @@
+﻿@model SoloProject.Models.Message
+@using System.Security.Claims
+
+<h2>Send a new message</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    <input type="hidden" name="To" id="To" value="+12088915733">
+    <input type="hidden" name="From" id="From" value="+12088915725">
+    @Html.LabelFor(model => model.Body)
+    @Html.TextBoxFor(model => model.Body)
+    <input type="submit" value="Send!" />
+}
+
+@Html.ActionLink("Back home", "Index")
