@@ -19,7 +19,7 @@
             <button class="btn btn-primary comment-post" value=@Html.DisplayFor(x => post.PostId) name="CommentPost" data-toggle="modal" data-target="#myModal">Comment</button> |
             <button class="btn btn-info details-post" value=@Html.DisplayFor(x => post.PostId) name="DetailsPost">Details</button> | 
             <button class="btn btn-warning edit-post" value=@Html.DisplayFor(x => post.PostId) name="EditPost" data-toggle="modal" data-target="#myModal">Edit</button> | 
-            <button class="btn btn-danger delete-post" value=@Html.DisplayFor(x => post.PostId) name="DeletePost" data-toggle="modal" data-target="#myModal">Delete</button>
+            <button class="btn btn-danger delete-post" value=@Html.DisplayFor(x => post.PostId) name="DeletePost" data-toggle="modal" data-target="#myModal">Delete</button> | <button class="btn btn-default message-user" value=@Html.DisplayFor(x => post.PostId) name="MessageUser" data-toggle="modal" data-target="#myModal">Message User</button> 
             <div id="details"></div>
         </div>
     }
@@ -107,6 +107,18 @@
                         $('#ModalPost').html(result);
                     }
                 });
+        });
+        $('.message-user').click(function () {
+            $('#myInput').focus()
+            $.ajax({
+                type: 'GET',
+                dataType: 'html',
+                data: { id: this.value },
+                url: '@Url.Action("Message")',
+                success: function (result) {
+                    $('#ModalPost').html(result);
+                }
             });
+        });
         });
 </script>
